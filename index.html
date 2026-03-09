@@ -1,0 +1,1672 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Bogdan Eftimie — Software Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #0e0e0d;
+        --bg2: #141413;
+        --fg: #f0ede6;
+        --muted: #6b6b60;
+        --muted2: #9a9a8e;
+        --border: #222220;
+        --accent: #c8b89a;
+        --accent2: #e8d5b7;
+        --max: 1280px;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Syne", sans-serif;
+        background: var(--bg);
+        color: var(--fg);
+        font-size: 20px;
+        line-height: 1.8;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      body.light {
+        --bg: #f7f6f3;
+        --bg2: #efede8;
+        --fg: #1a1a18;
+        --muted: #aaa89e;
+        --muted2: #666660;
+        --border: #e2e0da;
+        --accent: #8a6d4a;
+        --accent2: #a07850;
+      }
+
+      .theme-toggle {
+        background: transparent;
+        border: 0px solid var(--border);
+        color: var(--muted2);
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        transition: all 0.2s;
+        flex-shrink: 0;
+        cursor: pointer;
+      }
+      .theme-toggle:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      /* ── NAV ── */
+      nav {
+        position: fixed;
+        background-color: var(--bg);
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-inner {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 14px 56px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .nav-name {
+        font-family: "DM Serif Display", serif;
+        font-size: 1.1rem;
+        font-weight: 400;
+        letter-spacing: 0.08em;
+        color: var(--fg);
+        text-transform: uppercase;
+      }
+      .nav-name a {
+        text-decoration: none;
+        color: var(--muted2);
+        text-transform: uppercase;
+        transition: color 0.2s;
+      }
+      .nav-name a:hover {
+        color: var(--fg);
+      }
+      .nav-links {
+        display: flex;
+        gap: 40px;
+        list-style: none;
+        align-items: center;
+      }
+      .nav-links a {
+        text-decoration: none;
+        color: var(--muted2);
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--fg);
+      }
+      .theme-toggle .material-symbols-outlined {
+        font-size: 18px;
+      }
+
+      /* ── HERO ── */
+      .hero {
+        min-height: 50vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        position: relative;
+        overflow: hidden;
+        border-bottom: 1px solid var(--border);
+      }
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse 80% 60% at 70% 40%,
+          rgba(200, 184, 154, 0.04) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+      .hero-inner {
+        max-width: var(--max);
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 56px 80px;
+        position: relative;
+        z-index: 1;
+      }
+      .hero-eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 28px;
+        opacity: 0;
+        animation: fadeUp 0.6s ease forwards 0.2s;
+      }
+      .hero-eyebrow-line {
+        width: 40px;
+        height: 1px;
+        background: var(--accent);
+      }
+      .hero-eyebrow span {
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+      .hero-title {
+        font-family: "DM Serif Display", serif;
+        font-size: clamp(4rem, 9vw, 8.5rem);
+        line-height: 0.92;
+        letter-spacing: -0.02em;
+        font-weight: 300;
+        max-width: 1000px;
+        opacity: 0;
+        animation: fadeUp 0.8s ease forwards 0.35s;
+      }
+      .hero-title em {
+        font-style: italic;
+        color: var(--accent);
+      }
+      .hero-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-top: 48px;
+        opacity: 0;
+        animation: fadeUp 0.7s ease forwards 0.55s;
+      }
+      .hero-sub {
+        font-size: 1rem;
+        color: var(--muted2);
+        max-width: 360px;
+        line-height: 1.8;
+        font-weight: 400;
+      }
+      .hero-cta {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 13px 28px;
+        font-family: "Syne", sans-serif;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: all 0.25s;
+        cursor: pointer;
+        border: none;
+      }
+      .btn-primary {
+        background: var(--accent);
+        color: var(--bg);
+      }
+      .btn-primary:hover {
+        background: var(--accent2);
+        transform: translateY(-2px);
+      }
+      .btn-ghost {
+        background: transparent;
+        color: var(--muted2);
+        border: 1px solid var(--border);
+      }
+      .btn-ghost:hover {
+        border-color: var(--muted2);
+        color: var(--fg);
+        transform: translateY(-2px);
+      }
+      .hero-scroll {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 0.62rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      .hero-scroll-line {
+        width: 1px;
+        height: 48px;
+        background: linear-gradient(to bottom, var(--accent), transparent);
+        animation: scrollLine 2s ease-in-out infinite;
+      }
+      @keyframes scrollLine {
+        0%,
+        100% {
+          opacity: 0.3;
+          transform: scaleY(1);
+        }
+        50% {
+          opacity: 1;
+          transform: scaleY(1.1);
+        }
+      }
+
+      /* about */
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 80px;
+        align-items: center;
+      }
+      .about-desc {
+        font-size: 1rem;
+        color: var(--muted2);
+        line-height: 1.8;
+      }
+
+      .about-desc {
+        font-size: 1rem;
+        color: var(--muted2);
+        line-height: 1.8;
+      }
+
+      @media (max-width: 768px) {
+        .about-grid {
+          grid-template-columns: 1fr;
+          gap: 32px;
+          padding: 36px 24px;
+        }
+      }
+      /* ── SECTION BASE ── */
+      section {
+        border-bottom: 1px solid var(--border);
+      }
+      .section-inner {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 120px 56px;
+      }
+      .section-eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 80px;
+      }
+      .section-title {
+        font-family: "DM Serif Display", serif;
+        font-size: clamp(2.2rem, 4vw, 3.5rem);
+        font-weight: 300;
+        letter-spacing: -0.01em;
+        line-height: 1.1;
+        color: var(--fg);
+      }
+      .section-title em {
+        font-style: italic;
+        color: var(--accent);
+      }
+
+      /* ── PROJECTS ── */
+      .project-status {
+        display: inline-block;
+        font-size: 0.6rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        border: 1px solid var(--muted);
+        color: var(--muted);
+        padding: 3px 10px;
+        border-radius: 999px;
+        margin-bottom: 16px;
+      }
+      .project-status.ongoing {
+        border-color: #c8a96e;
+        color: #c8a96e;
+      }
+
+      .projects-list {
+        max-width: 1168px;
+        margin: 0 auto;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .project-item {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 0;
+        border-top: 1px solid var(--border);
+        padding: 80px 0;
+        align-items: center;
+        position: relative;
+      }
+      .project-item:last-child {
+        border-bottom: 1px solid var(--border);
+      }
+
+      /* Alternating layout */
+      .project-item:nth-child(even) {
+        direction: rtl;
+      }
+      .project-item:nth-child(even) > * {
+        direction: ltr;
+      }
+
+      /* ── LEFT: device mockup ── */
+      .project-visual {
+        position: relative;
+        padding-right: 40px;
+        padding-bottom: 40px;
+        z-index: 10;
+      }
+
+      /* Laptop mockup */
+      .laptop {
+        width: 100%;
+        max-width: 100%;
+        position: relative;
+        transition: transform 0.3s ease;
+      }
+      .laptop:hover {
+        transform: scale(1.2);
+        transform-origin: bottom center;
+        z-index: 100;
+        position: relative;
+      }
+      .laptop-screen-wrap {
+        background: #1a1a18;
+        border-radius: 10px 10px 0 0;
+        padding: 20px 20px 0;
+        box-shadow:
+          0 0 0 1.5px #333,
+          0 20px 60px rgba(0, 0, 0, 0.5);
+        position: relative;
+      }
+      .laptop-bar {
+        height: 22px;
+        background: #2a2a28;
+        display: flex;
+        align-items: center;
+        padding: 0 10px;
+        gap: 5px;
+        margin: -20px -20px 0;
+        border-radius: 10px 10px 0 0;
+      }
+      .laptop-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+      }
+      .laptop-dot:nth-child(1) {
+        background: #ff5f57;
+      }
+      .laptop-dot:nth-child(2) {
+        background: #febc2e;
+      }
+      .laptop-dot:nth-child(3) {
+        background: #28c840;
+      }
+      .laptop-screen {
+        margin-top: 8px;
+        width: 100%;
+        aspect-ratio: 16/10;
+        overflow: hidden;
+        background: #111;
+        border-radius: 2px;
+      }
+      .laptop-screen img,
+      .laptop-screen video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .laptop-base {
+        height: 16px;
+        background: linear-gradient(to bottom, #2a2a28, #222);
+        border-radius: 0 0 4px 4px;
+        box-shadow: 0 0 0 1.5px #333;
+      }
+      .laptop-foot {
+        height: 6px;
+        background: #1e1e1c;
+        border-radius: 0 0 8px 8px;
+        width: 60%;
+        margin: 0 auto;
+        box-shadow: 0 0 0 1px #333;
+      }
+
+      /* Overlapping phone on project 1 */
+      .phone-overlap {
+        position: absolute;
+        bottom: -20px;
+        left: -20px;
+        width: 28%;
+        z-index: 2;
+      }
+      .phone-overlap .phone-frame-small:hover {
+        transform: scale(1.2);
+        transform-origin: bottom left;
+        z-index: 100;
+        position: relative;
+      }
+
+      /* ── PHONE FRAME ── */
+      .phone-frame-small {
+        width: 100%;
+        aspect-ratio: 9/19;
+        background: #141412;
+        border-radius: 16px;
+        padding: 5px;
+        position: relative;
+        box-shadow:
+          0 0 0 1px #333,
+          0 8px 24px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease;
+      }
+      .phone-frame-small .phone-notch {
+        width: 28px;
+        height: 8px;
+        background: #141412;
+        border-radius: 0 0 6px 6px;
+        position: absolute;
+        top: 5px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 2;
+      }
+      .phone-frame-small .phone-screen {
+        width: 100%;
+        height: 100%;
+        border-radius: 12px;
+        overflow: hidden;
+        background: #111;
+      }
+      .phone-frame-small .phone-screen img,
+      .phone-frame-small .phone-screen video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .phone-offset {
+        transform: translateY(20px);
+      }
+
+      /* ── PROJECT INFO ── */
+      .project-info {
+        padding-left: 60px;
+      }
+
+      .coming-soon-label {
+        font-size: 0.65rem;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 12px;
+      }
+
+      .store-badges {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .store-badges img {
+        height: 40px;
+        width: auto;
+        opacity: 0.5;
+        filter: grayscale(1);
+        cursor: not-allowed;
+      }
+
+      /* Odd: border on left side of info */
+      .project-item:nth-child(odd) .project-info {
+        border-left: 1px solid var(--border);
+        padding-left: 40px;
+      }
+      .project-item:nth-child(odd) .project-visual {
+        padding-right: 40px;
+      }
+
+      /* Even: border on left side of the visual */
+      .project-item:nth-child(even) .project-visual,
+      .project-item:nth-child(even) .project-phones-only {
+        border-left: 1px solid var(--border);
+        padding-left: 60px;
+        padding-right: 0;
+      }
+      .project-item:nth-child(even) .project-info {
+        border-left: none;
+        padding-left: 0;
+        padding-right: 60px;
+      }
+
+      /* ── PHONE CAROUSEL (Project 2) ── */
+      .project-phones-only {
+        overflow: hidden;
+        min-width: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        padding-top: 40px;
+        padding-bottom: 40px;
+      }
+
+      .phone-carousel {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        width: 100%;
+        background: transparent;
+      }
+
+      .carousel-controls {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        width: 100%;
+        justify-content: center;
+        background: transparent;
+      }
+
+      /* outer wrap so hover scale escapes */
+      .carousel-track-wrap {
+        width: 260px;
+        overflow: visible;
+        padding: 40px 0;
+        background: transparent;
+      }
+
+      /* transform:scale can visually escape the box */
+      .carousel-clip {
+        width: 260px;
+        clip-path: inset(-60px 0px);
+        background: transparent;
+      }
+
+      .carousel-track {
+        display: flex;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        background: transparent;
+      }
+
+      .carousel-track .phone-frame-small {
+        width: 260px;
+        min-width: 260px;
+        flex-shrink: 0;
+        flex: unset;
+        max-width: unset;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .phone-zoomed {
+        position: fixed !important;
+        z-index: 9999 !important;
+        transform: scale(1.6) !important;
+        transform-origin: center center !important;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease !important;
+
+        pointer-events: none;
+      }
+
+      .carousel-btn {
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--muted2);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .carousel-btn:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      .carousel-dots {
+        display: flex;
+        gap: 6px;
+        justify-content: center;
+      }
+      .carousel-dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--border);
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .carousel-dot.active {
+        background: var(--accent);
+      }
+
+      /* ── PROJECT TEXT ── */
+      .project-category {
+        font-size: 0.9rem;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 8px;
+      }
+      .project-num-large {
+        font-family: "DM Serif Display", serif;
+        font-size: 3rem;
+        font-weight: 300;
+        color: var(--accent);
+        line-height: 1;
+        margin-bottom: 12px;
+        letter-spacing: -0.02em;
+      }
+      .project-name {
+        font-family: "DM Serif Display", serif;
+        font-size: 2.6rem;
+        font-weight: 400;
+        line-height: 1.1;
+        letter-spacing: -0.01em;
+        margin-bottom: 20px;
+        color: var(--fg);
+      }
+      .project-desc {
+        font-size: 0.98rem;
+        color: var(--muted2);
+        line-height: 1.8;
+        font-weight: 400;
+        margin-bottom: 28px;
+        max-width: 420px;
+      }
+      .project-tags {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0;
+        margin-bottom: 36px;
+      }
+      .tag {
+        font-size: 0.68rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted2);
+        padding: 0 14px 0 0;
+        margin-right: 14px;
+        border-right: 1px solid var(--border);
+      }
+      .tag:last-child {
+        border-right: none;
+        padding-right: 0;
+        margin-right: 0;
+      }
+      .project-link-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--fg);
+        text-decoration: none;
+        border: 1px solid var(--border);
+        padding: 12px 24px;
+        transition: all 0.2s;
+      }
+      .project-link-btn:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        transform: translateX(4px);
+      }
+      .project-link-btn-arrow {
+        transition: transform 0.2s;
+      }
+      .project-link-btn:hover .project-link-btn-arrow {
+        transform: translateX(4px);
+      }
+      .project-link {
+        text-transform: uppercase;
+        color: var(--fg);
+        text-decoration: none;
+        transition: all 0.2s;
+      }
+      .project-link:hover {
+        color: var(--accent);
+      }
+
+      /* ── SKILLS ── */
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+        border: 1px solid var(--border);
+      }
+      .skill-group {
+        padding: 40px 36px;
+        border-right: 1px solid var(--border);
+        transition: background 0.2s;
+      }
+      .skill-group:last-child {
+        border-right: none;
+      }
+      .skill-group:hover {
+        background: var(--bg2);
+      }
+      .skill-group-title {
+        font-size: 0.65rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 24px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid var(--border);
+      }
+      .skill-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .skill-list li {
+        font-size: 0.88rem;
+        font-weight: 400;
+        color: var(--muted2);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: color 0.2s;
+      }
+      .skill-group:hover .skill-list li {
+        color: var(--fg);
+      }
+      .skill-list li::before {
+        content: "";
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background: var(--accent);
+        flex-shrink: 0;
+        opacity: 0.6;
+      }
+
+      /* ── CONTACT ── */
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        border: 1px solid var(--border);
+      }
+      .contact-left {
+        padding: 60px;
+        border-right: 1px solid var(--border);
+      }
+      .contact-tagline {
+        font-family: "DM Serif Display", serif;
+        font-size: 2.4rem;
+        font-weight: 300;
+        line-height: 1.2;
+        color: var(--fg);
+        margin-bottom: 32px;
+        letter-spacing: -0.01em;
+      }
+      .contact-tagline em {
+        font-style: italic;
+        color: var(--accent);
+      }
+      .contact-blurb {
+        font-size: 0.98rem;
+        color: var(--muted2);
+        line-height: 1.8;
+        margin-bottom: 40px;
+        max-width: 420px;
+      }
+      .contact-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        border-top: 1px solid var(--border);
+      }
+      .contact-link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 0;
+        border-bottom: 1px solid var(--border);
+        text-decoration: none;
+        color: var(--muted2);
+        font-size: 0.82rem;
+        transition: all 0.2s;
+      }
+      .contact-link:hover {
+        color: var(--fg);
+      }
+      .contact-link:hover .contact-link-arrow {
+        transform: translate(3px, -3px);
+      }
+      .contact-link-left {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+      .contact-link-label {
+        font-size: 0.62rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        width: 56px;
+      }
+      .contact-link-arrow {
+        font-size: 0.9rem;
+        transition: transform 0.2s;
+        color: var(--muted);
+      }
+      .contact-right {
+        padding: 60px;
+      }
+      .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .form-field {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .form-field label {
+        font-size: 0.62rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .form-field input,
+      .form-field textarea {
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid var(--border);
+        padding: 10px 0;
+        font-size: 0.9rem;
+        font-family: "Syne", sans-serif;
+        color: var(--fg);
+        font-weight: 400;
+        transition: border-color 0.2s;
+        resize: none;
+      }
+      .form-field input:focus,
+      .form-field textarea:focus {
+        outline: none;
+        border-color: var(--accent);
+      }
+      .form-field input::placeholder,
+      .form-field textarea::placeholder {
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        border-top: 1px solid var(--border);
+      }
+      .footer-inner {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 24px 56px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      footer p {
+        font-size: 0.7rem;
+        color: var(--muted);
+        letter-spacing: 0.06em;
+      }
+
+      /* ── ANIMATIONS ── */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(32px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 1024px) {
+        .project-item {
+          grid-template-columns: 1fr;
+          gap: 48px;
+          direction: ltr;
+        }
+        .project-visual {
+          padding-right: 0;
+        }
+        .project-phones-only {
+          padding-right: 0;
+        }
+        .project-info {
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+          border-left: none !important;
+          border-top: 1px solid var(--border);
+          padding-top: 40px;
+        }
+        .project-item:nth-child(even) .project-visual,
+        .project-item:nth-child(even) .project-phones-only {
+          border-left: none;
+          padding-left: 0;
+        }
+        .skills-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+        .contact-left {
+          border-right: none;
+          border-bottom: 1px solid var(--border);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-inner {
+          padding: 20px 24px;
+        }
+        .nav-links {
+          gap: 24px;
+        }
+        .hero-inner {
+          padding: 0 24px 60px;
+        }
+        .section-inner {
+          padding: 80px 24px;
+        }
+        .hero-bottom {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 32px;
+        }
+        .footer-inner {
+          flex-direction: column;
+          gap: 8px;
+          text-align: center;
+          padding: 20px;
+        }
+        .skills-grid {
+          grid-template-columns: 1fr;
+        }
+        .contact-left,
+        .contact-right {
+          padding: 36px 24px;
+        }
+        .carousel-track-wrap {
+          width: 180px;
+        }
+        .carousel-track .phone-frame-small {
+          width: 180px;
+          min-width: 180px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- nav -->
+    <nav>
+      <div class="nav-inner">
+        <span class="nav-name"><a href="#home">Bogdan Eftimie</a></span>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Toggle theme"
+          >
+            <span class="material-symbols-outlined" id="themeIcon"
+              >bedtime</span
+            >
+          </button>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- hero -->
+    <section id="home">
+      <div class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-inner">
+          <div class="hero-eyebrow">
+            <div class="hero-eyebrow-line"></div>
+            <span>Software Engineer &amp; Full-Stack Developer</span>
+          </div>
+          <h1 class="hero-title">
+            Building things<br />
+            that <em>work.</em>
+          </h1>
+          <div class="hero-bottom">
+            <div class="hero-cta">
+              <a href="#projects" class="btn btn-primary">View my work</a>
+              <a href="#contact" class="btn btn-ghost">Get in touch</a>
+            </div>
+            <div class="hero-scroll">
+              <div class="hero-scroll-line"></div>
+              scroll
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- about -->
+    <section id="about">
+      <div class="section-inner">
+        <div class="about-grid reveal">
+          <div class="about-text">
+            <div class="section-eyebrow" style="margin-bottom: 32px">
+              <h2 class="section-title">About</h2>
+            </div>
+            <p class="about-desc">
+              I'm a Computing & IT graduate from the Open University, currently
+              building web and mobile applications. I enjoy working across the
+              full stack — from React and Next.js frontends to custom backend
+              logic and API integrations. Alongside that I'm working on Gym Log,
+              a React Native workout tracking app I've been building as a
+              personal project. It's close to being finished and has been a good
+              way to push into mobile development and build something I actually
+              use. I also work on smaller projects when an idea occurs.
+            </p>
+
+            <a
+              href="assets/Bogdan Eftimie - Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-primary"
+              style="margin-top: 32px"
+              >Download CV</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- projects -->
+    <section id="projects">
+      <div class="section-inner">
+        <div class="section-eyebrow reveal">
+          <h2 class="section-title">Projects</h2>
+        </div>
+
+        <div class="projects-list">
+          <!-- Project 1: Random Steam Game -->
+          <div class="project-item reveal">
+            <div class="project-visual">
+              <div class="laptop">
+                <div class="laptop-screen-wrap">
+                  <div class="laptop-bar">
+                    <span class="laptop-dot"></span>
+                    <span class="laptop-dot"></span>
+                    <span class="laptop-dot"></span>
+                  </div>
+                  <div class="laptop-screen">
+                    <img
+                      src="assets/p1f_2.png"
+                      alt="Random Steam Game web app interface on desktop"
+                    />
+                  </div>
+                </div>
+                <div class="laptop-base"></div>
+                <div class="laptop-foot"></div>
+              </div>
+              <div class="phone-overlap">
+                <div class="phone-frame-small">
+                  <div class="phone-notch"></div>
+                  <div class="phone-screen">
+                    <img
+                      src="assets/p1_1.png"
+                      alt="Random Steam Game web app on mobile"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-info">
+              <p class="project-category">Web App</p>
+              <p class="project-num-large">01</p>
+              <h3 class="project-name">
+                <a
+                  href="https://randomsteamgame.co.uk/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="project-link"
+                >
+                  Random Steam Game
+                </a>
+              </h3>
+              <p class="project-desc">
+                A Steam companion that picks a random game from your library or
+                the entire Steam catalogue. Supports two-account mode to find
+                games you both own. Includes smart filters, a favourites system
+                with manual search, and a bingo board generated from your
+                favourites or full library with built-in play suggestions.
+              </p>
+              <div class="project-tags">
+                <span class="tag">Next.js</span>
+                <span class="tag">React</span>
+                <span class="tag">Node.js</span>
+                <span class="tag">Steam API</span>
+                <span class="tag">Vercel</span>
+              </div>
+              <a
+                href="https://randomsteamgame.co.uk/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="project-link-btn"
+              >
+                View Project </span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Project 2: Gym Log -->
+          <div class="project-item reveal">
+            <div class="project-phones-only">
+              <div class="phone-carousel">
+                <div class="carousel-controls">
+                  <button
+                    class="carousel-btn carousel-prev"
+                    aria-label="Previous"
+                  >
+                    &#8592;
+                  </button>
+                  <div class="carousel-track-wrap">
+                    <div class="carousel-clip">
+                      <div class="carousel-track">
+                        <div class="phone-frame-small">
+                          <div class="phone-notch"></div>
+                          <div class="phone-screen">
+                            <img
+                              src="assets/gymlog_index.jpg"
+                              alt="Gym Log home screen"
+                            />
+                          </div>
+                        </div>
+                        <div class="phone-frame-small">
+                          <div class="phone-notch"></div>
+                          <div class="phone-screen">
+                            <img
+                              src="assets/gymlog_index2.jpg"
+                              alt="Gym Log menu"
+                            />
+                          </div>
+                        </div>
+                        <div class="phone-frame-small">
+                          <div class="phone-notch"></div>
+                          <div class="phone-screen">
+                            <img
+                              src="assets/gymlog_index_edit.jpg"
+                              alt="Gym Log workout"
+                            />
+                          </div>
+                        </div>
+                        <div class="phone-frame-small">
+                          <div class="phone-notch"></div>
+                          <div class="phone-screen">
+                            <img
+                              src="assets/gymlog_workout.jpg"
+                              alt="Gym Log open workout"
+                            />
+                          </div>
+                        </div>
+                        <div class="phone-frame-small">
+                          <div class="phone-notch"></div>
+                          <div class="phone-screen">
+                            <img
+                              src="assets/open_workout.jpg"
+                              alt="Gym Log menu 2"
+                            />
+                          </div>
+                        </div>
+                        <div class="phone-frame-small">
+                          <div class="phone-notch"></div>
+                          <div class="phone-screen">
+                            <img
+                              src="assets/gymlog_calendar.jpg"
+                              alt="Gym Log menu 2"
+                            />
+                          </div>
+                        </div>
+                        <div class="phone-frame-small">
+                          <div class="phone-notch"></div>
+                          <div class="phone-screen">
+                            <img
+                              src="assets/gymlog_weight.jpg"
+                              alt="Gym Log menu 2"
+                            />
+                          </div>
+                        </div>
+                        <div class="phone-frame-small">
+                          <div class="phone-notch"></div>
+                          <div class="phone-screen">
+                            <img
+                              src="assets/gymlog_settings.jpg"
+                              alt="Gym Log menu 2"
+                            />
+                          </div>
+                        </div>
+                        <div class="phone-frame-small">
+                          <div class="phone-notch"></div>
+                          <div class="phone-screen">
+                            <img
+                              src="assets/gymlog_settings2.jpg"
+                              alt="Gym Log menu 2"
+                            />
+                          </div>
+                        </div>
+                        <div class="phone-frame-small">
+                          <div class="phone-notch"></div>
+                          <div class="phone-screen">
+                            <img
+                              src="assets/gymlog_index_light.jpg"
+                              alt="Gym Log menu 2"
+                            />
+                          </div>
+                        </div>
+                        <div class="phone-frame-small">
+                          <div class="phone-notch"></div>
+                          <div class="phone-screen">
+                            <img
+                              src="assets/gymlog_index_dim.jpg"
+                              alt="Gym Log menu 2"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <button class="carousel-btn carousel-next" aria-label="Next">
+                    &#8594;
+                  </button>
+                </div>
+                <div class="carousel-dots"></div>
+              </div>
+            </div>
+
+            <div class="project-info">
+              <p class="project-category">Mobile App</p>
+              <span class="project-status ongoing">In Progress</span>
+              <p class="project-num-large">02</p>
+              <h3 class="project-name">Gym Log</h3>
+              <p class="project-desc">
+                A fully customizable gym tracking app. Build your own workout
+                templates with fine-tuned controls: warmup sets, reps, weight,
+                %1RM, RPE, rest and notes. Personalize your home screen and
+                navigation to show exactly what you need. Track workout history
+                on a calendar, log quick sessions, and stay consistent with a
+                7-day activity tracker. No account required, all data is stored
+                locally on your device, with full backup export, restore, and
+                data reset options. Supports dark, dim, and light mode with
+                three font size options.
+              </p>
+              <div class="project-tags">
+                <span class="tag">React Native</span>
+                <span class="tag">Expo</span>
+                <span class="tag">Mobile</span>
+              </div>
+              <p class="coming-soon-label">Coming Soon</p>
+              <div class="store-badges">
+                <img
+                  src="assets/download-on-the-app-store.svg"
+                  alt="Download on the App Store"
+                />
+                <img
+                  src="assets/Google_Play_Store_badge_EN.svg"
+                  alt="Get it on Google Play"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- skills -->
+    <section id="skills">
+      <div class="section-inner">
+        <div class="section-eyebrow reveal">
+          <h2 class="section-title">Skills &amp; Technologies</h2>
+        </div>
+        <div class="skills-grid reveal">
+          <div class="skill-group">
+            <p class="skill-group-title">Frontend</p>
+            <ul class="skill-list">
+              <li>React / Next.js</li>
+              <li>JavaScript</li>
+              <li>HTML &amp; CSS</li>
+              <li>Responsive Design</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <p class="skill-group-title">Backend</p>
+            <ul class="skill-list">
+              <li>Node.js</li>
+              <li>Python</li>
+              <li>Java</li>
+              <li>REST APIs</li>
+              <li>Serverless Functions</li>
+              <li>API Integration</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <p class="skill-group-title">Tools</p>
+            <ul class="skill-list">
+              <li>Git / GitHub</li>
+              <li>Docker</li>
+              <li>Vercel</li>
+              <li>VS Code</li>
+              <li>NPM</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <p class="skill-group-title">Currently Learning</p>
+            <ul class="skill-list">
+              <li>TypeScript</li>
+              <li>React Native</li>
+              <li>Databases / SQL</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- contact -->
+    <section id="contact">
+      <div class="section-inner">
+        <div class="section-eyebrow reveal">
+          <h2 class="section-title">Get in Touch</h2>
+        </div>
+        <div class="contact-grid reveal">
+          <div class="contact-left">
+            <p class="contact-tagline">Open to new<br />opportunities.</p>
+            <p class="contact-blurb">
+              Looking for frontend, full-stack, or software engineering roles.
+            </p>
+            <div class="contact-links">
+              <a
+                href="mailto:bogdan01@outlook.pt"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="contact-link"
+              >
+                <div class="contact-link-left">
+                  <span class="contact-link-label">Email</span>
+                  bogdan01@outlook.pt
+                </div>
+                <span class="contact-link-arrow">↗</span>
+              </a>
+              <a
+                href="https://github.com/BogdanEftimie"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="contact-link"
+              >
+                <div class="contact-link-left">
+                  <span class="contact-link-label">GitHub</span>
+                  github.com/BogdanEftimie
+                </div>
+                <span class="contact-link-arrow">↗</span>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/bogdan-eftimie/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="contact-link"
+              >
+                <div class="contact-link-left">
+                  <span class="contact-link-label">LinkedIn</span>
+                  linkedin.com/in/bogdan-eftimie/
+                </div>
+                <span class="contact-link-arrow">↗</span>
+              </a>
+            </div>
+          </div>
+          <div class="contact-right">
+            <form
+              class="contact-form"
+              action="https://api.web3forms.com/submit"
+              method="POST"
+            >
+              <input
+                type="hidden"
+                name="access_key"
+                value="5de1742b-b89c-4552-a663-c6821cd0b7bf"
+              />
+              <input
+                type="hidden"
+                name="subject"
+                value="New message from portfolio"
+              />
+              <input type="checkbox" name="botcheck" style="display: none" />
+              <div class="form-field">
+                <label for="name">Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="Your name"
+                  required
+                />
+              </div>
+              <div class="form-field">
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="your@email.com"
+                  required
+                />
+              </div>
+              <div class="form-field">
+                <label for="message">Message</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="4"
+                  placeholder="What's on your mind?"
+                  required
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="btn btn-primary"
+                style="align-self: flex-start"
+              >
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- footer -->
+    <footer>
+      <div class="footer-inner">
+        <p>© 2026 Bogdan Eftimie</p>
+        <p>Built with HTML, CSS &amp; JS</p>
+      </div>
+    </footer>
+
+    <script
+      data-cfasync="false"
+      src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
+    ></script>
+    <script>
+      const toggle = document.getElementById("themeToggle");
+      const icon = document.getElementById("themeIcon");
+
+      const saved = localStorage.getItem("theme");
+      if (saved === "light") {
+        document.body.classList.add("light");
+        icon.textContent = "sunny";
+      }
+
+      toggle.addEventListener("click", () => {
+        document.body.classList.toggle("light");
+        const isLight = document.body.classList.contains("light");
+        icon.textContent = isLight ? "sunny" : "bedtime";
+        localStorage.setItem("theme", isLight ? "light" : "dark");
+      });
+
+      // Scroll reveal
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => entry.target.classList.add("visible"), i * 100);
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.08 },
+      );
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => observer.observe(el));
+
+      // Carousel phone hover zoom — escapes grid clipping via fixed positioning
+      document
+        .querySelectorAll(".carousel-track .phone-frame-small")
+        .forEach((phone) => {
+          let ghost = null;
+
+          phone.addEventListener("mouseenter", () => {
+            const r = phone.getBoundingClientRect();
+            ghost = phone.cloneNode(true);
+            ghost.classList.add("phone-zoomed");
+            ghost.style.top = r.top + "px";
+            ghost.style.left = r.left + "px";
+            ghost.style.width = r.width + "px";
+            ghost.style.height = r.height + "px";
+            ghost.style.margin = "0";
+            document.body.appendChild(ghost);
+          });
+
+          phone.addEventListener("mouseleave", () => {
+            if (ghost) {
+              ghost.remove();
+              ghost = null;
+            }
+          });
+        });
+
+      // Phone carousel — one slide at a time
+      const carousel = document.querySelector(".phone-carousel");
+      if (carousel) {
+        const track = carousel.querySelector(".carousel-track");
+        const slides = Array.from(track.children);
+        const dotsWrap = carousel.querySelector(".carousel-dots");
+        const SLIDE_W = () =>
+          carousel.querySelector(".carousel-clip").offsetWidth;
+        let current = 0;
+
+        // Build dots
+        slides.forEach((_, i) => {
+          const dot = document.createElement("div");
+          dot.className = "carousel-dot" + (i === 0 ? " active" : "");
+          dot.addEventListener("click", () => goTo(i));
+          dotsWrap.appendChild(dot);
+        });
+
+        function goTo(index) {
+          current = (index + slides.length) % slides.length;
+          track.style.transform = `translateX(-${current * SLIDE_W()}px)`;
+          dotsWrap
+            .querySelectorAll(".carousel-dot")
+            .forEach((d, i) => d.classList.toggle("active", i === current));
+        }
+
+        carousel
+          .querySelector(".carousel-prev")
+          .addEventListener("click", () => goTo(current - 1));
+        carousel
+          .querySelector(".carousel-next")
+          .addEventListener("click", () => goTo(current + 1));
+
+        window.addEventListener("resize", () => goTo(current));
+
+        // Swipe support
+        let touchStartX = 0;
+        track.addEventListener(
+          "touchstart",
+          (e) => (touchStartX = e.touches[0].clientX),
+        );
+        track.addEventListener("touchend", (e) => {
+          const diff = touchStartX - e.changedTouches[0].clientX;
+          if (Math.abs(diff) > 40) goTo(current + (diff > 0 ? 1 : -1));
+        });
+      }
+    </script>
+  </body>
+</html>
