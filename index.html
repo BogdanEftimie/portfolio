@@ -136,6 +136,85 @@
       .theme-toggle .material-symbols-outlined {
         font-size: 18px;
       }
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+        z-index: 102;
+      }
+      .hamburger span {
+        display: block;
+        width: 22px;
+        height: 1.5px;
+        background: var(--muted2);
+        transition: all 0.3s ease;
+        transform-origin: center;
+      }
+      .hamburger.open span:nth-child(1) {
+        transform: translateY(6.5px) rotate(45deg);
+      }
+      .hamburger.open span:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+      }
+      .hamburger.open span:nth-child(3) {
+        transform: translateY(-6.5px) rotate(-45deg);
+      }
+      .nav-mobile {
+        display: none;
+        flex-direction: column;
+        background: var(--bg);
+        border-top: 1px solid var(--border);
+        padding: 0;
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height 0.35s ease, padding 0.35s ease;
+      }
+      .nav-mobile.open {
+        max-height: 400px;
+        padding: 16px 0;
+      }
+      .nav-mobile a {
+        text-decoration: none;
+        color: var(--muted2);
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 14px 24px;
+        border-bottom: 1px solid var(--border);
+        transition: color 0.2s;
+        display: block;
+      }
+      .nav-mobile a:last-of-type {
+        border-bottom: none;
+      }
+      .nav-mobile a:hover { color: var(--fg); }
+      .nav-mobile-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 24px;
+        border-top: 1px solid var(--border);
+      }
+      .nav-mobile-theme-label {
+        font-size: 0.65rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      @media (max-width: 640px) {
+        .nav-links { display: none; }
+        .hamburger { display: flex; }
+        .nav-mobile { display: flex; }
+        .nav-inner { padding: 14px 24px; }
+      }
 
       /* ── HERO ── */
       .hero {
@@ -655,7 +734,7 @@
         pointer-events: all;
       }
       .lightbox-phone {
-        width: 400px;
+        width: 260px;
         aspect-ratio: 9/19;
         background: #141412;
         border-radius: 24px;
@@ -1157,11 +1236,11 @@
         }
         .carousel-track-wrap,
         .carousel-clip {
-          width: 280px;
+          width: 180px;
         }
         .carousel-track .phone-frame-small {
-          width: 280px;
-          min-width: 280px;
+          width: 180px;
+          min-width: 180px;
         }
       }
     </style>
@@ -1177,16 +1256,25 @@
           <li><a href="#projects">Projects</a></li>
           <li><a href="#skills">Skills</a></li>
           <li><a href="#contact">Contact</a></li>
-          <button
-            class="theme-toggle"
-            id="themeToggle"
-            aria-label="Toggle theme"
-          >
-            <span class="material-symbols-outlined" id="themeIcon"
-              >bedtime</span
-            >
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <span class="material-symbols-outlined" id="themeIcon">bedtime</span>
           </button>
         </ul>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <div class="nav-mobile" id="navMobile">
+        <a href="#about" class="nav-mobile-link">About</a>
+        <a href="#projects" class="nav-mobile-link">Projects</a>
+        <a href="#skills" class="nav-mobile-link">Skills</a>
+        <a href="#contact" class="nav-mobile-link">Contact</a>
+        <div class="nav-mobile-bottom">
+          <span class="nav-mobile-theme-label">Theme</span>
+          <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle theme">
+            <span class="material-symbols-outlined" id="themeIconMobile">bedtime</span>
+          </button>
+        </div>
       </div>
     </nav>
 
@@ -1674,18 +1762,35 @@
     <script>
       const toggle = document.getElementById("themeToggle");
       const icon = document.getElementById("themeIcon");
+      const toggleMobile = document.getElementById("themeToggleMobile");
+      const iconMobile = document.getElementById("themeIconMobile");
+      const hamburger = document.getElementById("hamburger");
+      const navMobile = document.getElementById("navMobile");
 
-      const saved = localStorage.getItem("theme");
-      if (saved === "light") {
-        document.body.classList.add("light");
-        icon.textContent = "sunny";
+      function setTheme(isLight) {
+        document.body.classList.toggle("light", isLight);
+        const val = isLight ? "sunny" : "bedtime";
+        icon.textContent = val;
+        iconMobile.textContent = val;
+        localStorage.setItem("theme", isLight ? "light" : "dark");
       }
 
-      toggle.addEventListener("click", () => {
-        document.body.classList.toggle("light");
-        const isLight = document.body.classList.contains("light");
-        icon.textContent = isLight ? "sunny" : "bedtime";
-        localStorage.setItem("theme", isLight ? "light" : "dark");
+      if (localStorage.getItem("theme") === "light") setTheme(true);
+
+      toggle.addEventListener("click", () => setTheme(!document.body.classList.contains("light")));
+      toggleMobile.addEventListener("click", () => setTheme(!document.body.classList.contains("light")));
+
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("open");
+        navMobile.classList.toggle("open");
+      });
+
+      // close mobile menu when a link is clicked
+      document.querySelectorAll(".nav-mobile-link").forEach(link => {
+        link.addEventListener("click", () => {
+          hamburger.classList.remove("open");
+          navMobile.classList.remove("open");
+        });
       });
 
       // Scroll reveal
