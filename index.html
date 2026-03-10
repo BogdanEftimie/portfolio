@@ -80,7 +80,7 @@
         color: var(--accent);
       }
 
-      /* ── NAV ── */
+      /* ── nav ── */
       nav {
         position: fixed;
         background-color: var(--bg);
@@ -137,7 +137,7 @@
         font-size: 18px;
       }
 
-      /* ── HERO ── */
+      /* ── hero ── */
       .hero {
         min-height: 50vh;
         display: flex;
@@ -306,7 +306,7 @@
           padding: 36px 24px;
         }
       }
-      /* ── SECTION BASE ── */
+      /* ── section ── */
       section {
         border-bottom: 1px solid var(--border);
       }
@@ -334,7 +334,7 @@
         color: var(--accent);
       }
 
-      /* ── PROJECTS ── */
+      /* ── projects ── */
       .project-status {
         display: inline-block;
         font-size: 0.6rem;
@@ -374,7 +374,7 @@
         border-bottom: 1px solid var(--border);
       }
 
-      /* Alternating layout */
+      /* alternating layout */
       .project-item:nth-child(even) {
         direction: rtl;
       }
@@ -382,7 +382,7 @@
         direction: ltr;
       }
 
-      /* ── LEFT: device mockup ── */
+      /* ── left: device mockup ── */
       .project-visual {
         position: relative;
         padding-right: 40px;
@@ -390,7 +390,7 @@
         z-index: 10;
       }
 
-      /* Laptop mockup */
+      /* laptop mockup */
       .laptop {
         width: 100%;
         max-width: 100%;
@@ -466,7 +466,7 @@
         box-shadow: 0 0 0 1px #333;
       }
 
-      /* Overlapping phone on project 1 */
+      /* overlapping phone on project 1 */
       .phone-overlap {
         position: absolute;
         bottom: -20px;
@@ -481,7 +481,7 @@
         position: relative;
       }
 
-      /* ── PHONE FRAME ── */
+      /* ── phone frame ── */
       .phone-frame-small {
         width: 100%;
         aspect-ratio: 9/19;
@@ -524,7 +524,7 @@
         transform: translateY(20px);
       }
 
-      /* ── PROJECT INFO ── */
+      /* ── project info ── */
       .project-info {
         padding-left: 60px;
       }
@@ -552,7 +552,7 @@
         cursor: not-allowed;
       }
 
-      /* Odd: border on left side of info */
+      /* odd: border on left side of info */
       .project-item:nth-child(odd) .project-info {
         border-left: 1px solid var(--border);
         padding-left: 40px;
@@ -561,7 +561,7 @@
         padding-right: 40px;
       }
 
-      /* Even: border on left side of the visual */
+      /* even: border on left side of the visual */
       .project-item:nth-child(even) .project-visual,
       .project-item:nth-child(even) .project-phones-only {
         border-left: 1px solid var(--border);
@@ -574,7 +574,7 @@
         padding-right: 60px;
       }
 
-      /* ── PHONE CAROUSEL (Project 2) ── */
+      /* ── phone carousel (Project 2) ── */
       .project-phones-only {
         overflow: hidden;
         min-width: 0;
@@ -639,13 +639,14 @@
       .phone-zoomed {
         position: fixed !important;
         z-index: 9999 !important;
-        transform: scale(1.6) !important;
+        transform: scale(1.35) !important;
         transform-origin: center center !important;
-        transition:
-          transform 0.3s ease,
-          box-shadow 0.3s ease !important;
-
+        transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.25s ease !important;
         pointer-events: none;
+      }
+      .phone-zoomed.entering {
+        transform: scale(1) !important;
+        opacity: 0 !important;
       }
 
       .carousel-btn {
@@ -685,7 +686,7 @@
         background: var(--accent);
       }
 
-      /* ── PROJECT TEXT ── */
+      /* ── project text ── */
       .project-category {
         font-size: 0.9rem;
         font-weight: 600;
@@ -777,7 +778,7 @@
         color: var(--accent);
       }
 
-      /* ── SKILLS ── */
+      /* ── skills ── */
       .skills-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
@@ -833,7 +834,7 @@
         opacity: 0.6;
       }
 
-      /* ── CONTACT ── */
+      /* ── contact ── */
       .contact-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -949,7 +950,7 @@
         font-size: 0.85rem;
       }
 
-      /* ── FOOTER ── */
+      /* ── footer ── */
       footer {
         border-top: 1px solid var(--border);
       }
@@ -967,7 +968,7 @@
         letter-spacing: 0.06em;
       }
 
-      /* ── ANIMATIONS ── */
+      /* ── animations ── */
       @keyframes fadeUp {
         from {
           opacity: 0;
@@ -990,7 +991,7 @@
         transform: translateY(0);
       }
 
-      /* ── RESPONSIVE ── */
+      /* ── smaller screens ── */
       @media (max-width: 1024px) {
         .project-item {
           grid-template-columns: 1fr;
@@ -1058,7 +1059,8 @@
         .contact-right {
           padding: 36px 24px;
         }
-        .carousel-track-wrap {
+        .carousel-track-wrap,
+        .carousel-clip {
           width: 180px;
         }
         .carousel-track .phone-frame-small {
@@ -1454,15 +1456,10 @@
               Looking for frontend, full-stack, or software engineering roles.
             </p>
             <div class="contact-links">
-              <a
-                href="mailto:bogdan01@outlook.pt"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="contact-link"
-              >
+              <a href="/cdn-cgi/l/email-protection#cba9a4acafaaa5fbfa8ba4bebfa7a4a4a0e5bbbf" target="_blank" rel="noopener noreferrer" class="contact-link">
                 <div class="contact-link-left">
                   <span class="contact-link-label">Email</span>
-                  bogdan01@outlook.pt
+                  <span class="__cf_email__" data-cfemail="6f0d00080b0e015f5e2f001a1b03000004411f1b">[email&#160;protected]</span>
                 </div>
                 <span class="contact-link-arrow">↗</span>
               </a>
@@ -1560,7 +1557,7 @@
       </div>
     </footer>
 
-    <script
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script
       data-cfasync="false"
       src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
     ></script>
@@ -1581,7 +1578,7 @@
         localStorage.setItem("theme", isLight ? "light" : "dark");
       });
 
-      // Scroll reveal
+      // scroll reveal
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry, i) => {
@@ -1597,29 +1594,45 @@
         .querySelectorAll(".reveal")
         .forEach((el) => observer.observe(el));
 
-      // Carousel phone hover zoom — escapes grid clipping via fixed positioning
+      // hover zoom 
       document
         .querySelectorAll(".carousel-track .phone-frame-small")
         .forEach((phone) => {
           let ghost = null;
+          let leaveTimeout = null;
+
+          let enterTimeout = null;
 
           phone.addEventListener("mouseenter", () => {
-            const r = phone.getBoundingClientRect();
-            ghost = phone.cloneNode(true);
-            ghost.classList.add("phone-zoomed");
-            ghost.style.top = r.top + "px";
-            ghost.style.left = r.left + "px";
-            ghost.style.width = r.width + "px";
-            ghost.style.height = r.height + "px";
-            ghost.style.margin = "0";
-            document.body.appendChild(ghost);
+            if (leaveTimeout) { clearTimeout(leaveTimeout); leaveTimeout = null; }
+
+            enterTimeout = setTimeout(() => {
+              if (ghost) { ghost.remove(); ghost = null; }
+              const r = phone.getBoundingClientRect();
+              ghost = phone.cloneNode(true);
+              ghost.classList.add("phone-zoomed", "entering");
+              ghost.style.top = r.top + "px";
+              ghost.style.left = r.left + "px";
+              ghost.style.width = r.width + "px";
+              ghost.style.height = r.height + "px";
+              ghost.style.margin = "0";
+              document.body.appendChild(ghost);
+
+              requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                  if (ghost) ghost.classList.remove("entering");
+                });
+              });
+            }, 120);
           });
 
           phone.addEventListener("mouseleave", () => {
-            if (ghost) {
-              ghost.remove();
-              ghost = null;
-            }
+            if (enterTimeout) { clearTimeout(enterTimeout); enterTimeout = null; }
+            if (!ghost) return;
+            const dying = ghost;
+            ghost = null;
+            dying.classList.add("entering");
+            leaveTimeout = setTimeout(() => dying.remove(), 300);
           });
         });
 
