@@ -80,7 +80,7 @@
         color: var(--accent);
       }
 
-      /* ── nav ── */
+      /* ── NAV ── */
       nav {
         position: fixed;
         background-color: var(--bg);
@@ -137,7 +137,7 @@
         font-size: 18px;
       }
 
-      /* ── hero ── */
+      /* ── HERO ── */
       .hero {
         min-height: 50vh;
         display: flex;
@@ -306,7 +306,7 @@
           padding: 36px 24px;
         }
       }
-      /* ── section ── */
+      /* ── SECTION BASE ── */
       section {
         border-bottom: 1px solid var(--border);
       }
@@ -334,7 +334,7 @@
         color: var(--accent);
       }
 
-      /* ── projects ── */
+      /* ── PROJECTS ── */
       .project-status {
         display: inline-block;
         font-size: 0.6rem;
@@ -374,7 +374,7 @@
         border-bottom: 1px solid var(--border);
       }
 
-      /* alternating layout */
+      /* Alternating layout */
       .project-item:nth-child(even) {
         direction: rtl;
       }
@@ -382,7 +382,7 @@
         direction: ltr;
       }
 
-      /* ── left: device mockup ── */
+      /* ── LEFT: device mockup ── */
       .project-visual {
         position: relative;
         padding-right: 40px;
@@ -390,7 +390,7 @@
         z-index: 10;
       }
 
-      /* laptop mockup */
+      /* Laptop mockup */
       .laptop {
         width: 100%;
         max-width: 100%;
@@ -466,7 +466,7 @@
         box-shadow: 0 0 0 1px #333;
       }
 
-      /* overlapping phone on project 1 */
+      /* Overlapping phone on project 1 */
       .phone-overlap {
         position: absolute;
         bottom: -20px;
@@ -481,7 +481,7 @@
         position: relative;
       }
 
-      /* ── phone frame ── */
+      /* ── PHONE FRAME ── */
       .phone-frame-small {
         width: 100%;
         aspect-ratio: 9/19;
@@ -524,7 +524,7 @@
         transform: translateY(20px);
       }
 
-      /* ── project info ── */
+      /* ── PROJECT INFO ── */
       .project-info {
         padding-left: 60px;
       }
@@ -552,7 +552,7 @@
         cursor: not-allowed;
       }
 
-      /* odd: border on left side of info */
+      /* Odd: border on left side of info */
       .project-item:nth-child(odd) .project-info {
         border-left: 1px solid var(--border);
         padding-left: 40px;
@@ -561,7 +561,7 @@
         padding-right: 40px;
       }
 
-      /* even: border on left side of the visual */
+      /* Even: border on left side of the visual */
       .project-item:nth-child(even) .project-visual,
       .project-item:nth-child(even) .project-phones-only {
         border-left: 1px solid var(--border);
@@ -574,7 +574,7 @@
         padding-right: 60px;
       }
 
-      /* ── phone carousel (Project 2) ── */
+      /* ── PHONE CAROUSEL (Project 2) ── */
       .project-phones-only {
         overflow: hidden;
         min-width: 0;
@@ -636,17 +636,113 @@
           box-shadow 0.3s ease;
       }
 
-      .phone-zoomed {
-        position: fixed !important;
-        z-index: 9999 !important;
-        transform: scale(1.35) !important;
-        transform-origin: center center !important;
-        transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.25s ease !important;
+      /* lightbox */
+      .lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: rgba(0, 0, 0, 0.85);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+        opacity: 0;
+        transition: opacity 0.25s ease;
         pointer-events: none;
       }
-      .phone-zoomed.entering {
-        transform: scale(1) !important;
-        opacity: 0 !important;
+      .lightbox.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+      .lightbox-phone {
+        width: 400px;
+        aspect-ratio: 9/19;
+        background: #141412;
+        border-radius: 24px;
+        padding: 8px;
+        position: relative;
+        box-shadow: 0 0 0 1px #444, 0 32px 80px rgba(0,0,0,0.7);
+        transform: scale(0.9);
+        transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+      .lightbox.open .lightbox-phone {
+        transform: scale(1);
+      }
+      .lightbox-phone .phone-notch {
+        width: 28px;
+        height: 8px;
+        background: #141412;
+        border-radius: 0 0 6px 6px;
+        position: absolute;
+        top: 8px; left: 50%;
+        transform: translateX(-50%);
+        z-index: 2;
+      }
+      .lightbox-screen {
+        width: 100%; height: 100%;
+        border-radius: 18px;
+        overflow: hidden;
+        background: #111;
+      }
+      .lightbox-screen img {
+        width: 100%; height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .lightbox-btn {
+        background: transparent;
+        border: 1px solid rgba(255,255,255,0.15);
+        color: rgba(255,255,255,0.6);
+        width: 48px; height: 48px;
+        border-radius: 50%;
+        font-size: 1.2rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+        flex-shrink: 0;
+      }
+      .lightbox-btn:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      .lightbox-close {
+        position: absolute;
+        top: 24px; right: 24px;
+        background: transparent;
+        border: 1px solid rgba(255,255,255,0.15);
+        color: rgba(255,255,255,0.6);
+        width: 40px; height: 40px;
+        border-radius: 50%;
+        font-size: 1rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+      }
+      .lightbox-close:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      .lightbox-counter {
+        position: absolute;
+        bottom: 24px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 0.65rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.35);
+      }
+
+      .carousel-track .phone-frame-small {
+        cursor: pointer;
+      }
+      .carousel-track .phone-frame-small:hover {
+        box-shadow: 0 0 0 1.5px var(--accent), 0 8px 24px rgba(0,0,0,0.3);
       }
 
       .carousel-btn {
@@ -686,7 +782,7 @@
         background: var(--accent);
       }
 
-      /* ── project text ── */
+      /* ── PROJECT TEXT ── */
       .project-category {
         font-size: 0.9rem;
         font-weight: 600;
@@ -778,7 +874,7 @@
         color: var(--accent);
       }
 
-      /* ── skills ── */
+      /* ── SKILLS ── */
       .skills-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
@@ -834,7 +930,7 @@
         opacity: 0.6;
       }
 
-      /* ── contact ── */
+      /* ── CONTACT ── */
       .contact-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -950,7 +1046,7 @@
         font-size: 0.85rem;
       }
 
-      /* ── footer ── */
+      /* ── FOOTER ── */
       footer {
         border-top: 1px solid var(--border);
       }
@@ -968,7 +1064,7 @@
         letter-spacing: 0.06em;
       }
 
-      /* ── animations ── */
+      /* ── ANIMATIONS ── */
       @keyframes fadeUp {
         from {
           opacity: 0;
@@ -991,7 +1087,7 @@
         transform: translateY(0);
       }
 
-      /* ── smaller screens ── */
+      /* ── RESPONSIVE ── */
       @media (max-width: 1024px) {
         .project-item {
           grid-template-columns: 1fr;
@@ -1061,11 +1157,11 @@
         }
         .carousel-track-wrap,
         .carousel-clip {
-          width: 180px;
+          width: 280px;
         }
         .carousel-track .phone-frame-small {
-          width: 180px;
-          min-width: 180px;
+          width: 280px;
+          min-width: 280px;
         }
       }
     </style>
@@ -1557,6 +1653,20 @@
       </div>
     </footer>
 
+    <!-- lightbox -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+      <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
+      <button class="lightbox-btn" id="lightboxPrev" aria-label="Previous">&#8592;</button>
+      <div class="lightbox-phone">
+        <div class="phone-notch"></div>
+        <div class="lightbox-screen">
+          <img id="lightboxImg" src="" alt="" />
+        </div>
+      </div>
+      <button class="lightbox-btn" id="lightboxNext" aria-label="Next">&#8594;</button>
+      <div class="lightbox-counter" id="lightboxCounter"></div>
+    </div>
+
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script
       data-cfasync="false"
       src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
@@ -1578,7 +1688,7 @@
         localStorage.setItem("theme", isLight ? "light" : "dark");
       });
 
-      // scroll reveal
+      // Scroll reveal
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry, i) => {
@@ -1594,47 +1704,47 @@
         .querySelectorAll(".reveal")
         .forEach((el) => observer.observe(el));
 
-      // hover zoom 
-      document
-        .querySelectorAll(".carousel-track .phone-frame-small")
-        .forEach((phone) => {
-          let ghost = null;
-          let leaveTimeout = null;
+      // lightbox
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImg = document.getElementById("lightboxImg");
+      const lightboxCounter = document.getElementById("lightboxCounter");
+      const lbSlides = Array.from(document.querySelectorAll(".carousel-track .phone-frame-small"));
+      let lightboxIndex = 0;
 
-          let enterTimeout = null;
+      function openLightbox(index) {
+        lightboxIndex = index;
+        const img = lbSlides[index].querySelector("img");
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightboxCounter.textContent = (index + 1) + " / " + lbSlides.length;
+        lightbox.classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
 
-          phone.addEventListener("mouseenter", () => {
-            if (leaveTimeout) { clearTimeout(leaveTimeout); leaveTimeout = null; }
+      function closeLightbox() {
+        lightbox.classList.remove("open");
+        document.body.style.overflow = "";
+      }
 
-            enterTimeout = setTimeout(() => {
-              if (ghost) { ghost.remove(); ghost = null; }
-              const r = phone.getBoundingClientRect();
-              ghost = phone.cloneNode(true);
-              ghost.classList.add("phone-zoomed", "entering");
-              ghost.style.top = r.top + "px";
-              ghost.style.left = r.left + "px";
-              ghost.style.width = r.width + "px";
-              ghost.style.height = r.height + "px";
-              ghost.style.margin = "0";
-              document.body.appendChild(ghost);
+      function lightboxNav(dir) {
+        lightboxIndex = (lightboxIndex + dir + lbSlides.length) % lbSlides.length;
+        const img = lbSlides[lightboxIndex].querySelector("img");
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightboxCounter.textContent = (lightboxIndex + 1) + " / " + lbSlides.length;
+      }
 
-              requestAnimationFrame(() => {
-                requestAnimationFrame(() => {
-                  if (ghost) ghost.classList.remove("entering");
-                });
-              });
-            }, 120);
-          });
-
-          phone.addEventListener("mouseleave", () => {
-            if (enterTimeout) { clearTimeout(enterTimeout); enterTimeout = null; }
-            if (!ghost) return;
-            const dying = ghost;
-            ghost = null;
-            dying.classList.add("entering");
-            leaveTimeout = setTimeout(() => dying.remove(), 300);
-          });
-        });
+      lbSlides.forEach((phone, i) => phone.addEventListener("click", () => openLightbox(i)));
+      document.getElementById("lightboxClose").addEventListener("click", closeLightbox);
+      document.getElementById("lightboxPrev").addEventListener("click", () => lightboxNav(-1));
+      document.getElementById("lightboxNext").addEventListener("click", () => lightboxNav(1));
+      lightbox.addEventListener("click", (e) => { if (e.target === lightbox) closeLightbox(); });
+      document.addEventListener("keydown", (e) => {
+        if (!lightbox.classList.contains("open")) return;
+        if (e.key === "ArrowLeft") lightboxNav(-1);
+        if (e.key === "ArrowRight") lightboxNav(1);
+        if (e.key === "Escape") closeLightbox();
+      });
 
       // Phone carousel — one slide at a time
       const carousel = document.querySelector(".phone-carousel");
