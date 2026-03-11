@@ -173,7 +173,9 @@
         padding: 0;
         overflow: hidden;
         max-height: 0;
-        transition: max-height 0.35s ease, padding 0.35s ease;
+        transition:
+          max-height 0.35s ease,
+          padding 0.35s ease;
       }
       .nav-mobile.open {
         max-height: 400px;
@@ -194,7 +196,9 @@
       .nav-mobile a:last-of-type {
         border-bottom: none;
       }
-      .nav-mobile a:hover { color: var(--fg); }
+      .nav-mobile a:hover {
+        color: var(--fg);
+      }
       .nav-mobile-bottom {
         display: flex;
         align-items: center;
@@ -210,10 +214,18 @@
         color: var(--muted);
       }
       @media (max-width: 640px) {
-        .nav-links { display: none; }
-        .hamburger { display: flex; }
-        .nav-mobile { display: flex; }
-        .nav-inner { padding: 14px 24px; }
+        .nav-links {
+          display: none;
+        }
+        .hamburger {
+          display: flex;
+        }
+        .nav-mobile {
+          display: flex;
+        }
+        .nav-inner {
+          padding: 14px 24px;
+        }
       }
 
       /* ── HERO ── */
@@ -741,7 +753,9 @@
         border-radius: 24px;
         padding: 8px;
         position: relative;
-        box-shadow: 0 0 0 1px #444, 0 32px 80px rgba(0,0,0,0.7);
+        box-shadow:
+          0 0 0 1px #444,
+          0 32px 80px rgba(0, 0, 0, 0.7);
         transform: scale(0.9);
         transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
       }
@@ -754,26 +768,30 @@
         background: #141412;
         border-radius: 0 0 6px 6px;
         position: absolute;
-        top: 8px; left: 50%;
+        top: 8px;
+        left: 50%;
         transform: translateX(-50%);
         z-index: 2;
       }
       .lightbox-screen {
-        width: 100%; height: 100%;
+        width: 100%;
+        height: 100%;
         border-radius: 18px;
         overflow: hidden;
         background: #111;
       }
       .lightbox-screen img {
-        width: 100%; height: 100%;
+        width: 100%;
+        height: 100%;
         object-fit: cover;
         display: block;
       }
       .lightbox-btn {
         background: transparent;
-        border: 1px solid rgba(255,255,255,0.15);
-        color: rgba(255,255,255,0.6);
-        width: 48px; height: 48px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: rgba(255, 255, 255, 0.6);
+        width: 48px;
+        height: 48px;
         border-radius: 50%;
         font-size: 1.2rem;
         cursor: pointer;
@@ -789,11 +807,13 @@
       }
       .lightbox-close {
         position: absolute;
-        top: 24px; right: 24px;
+        top: 24px;
+        right: 24px;
         background: transparent;
-        border: 1px solid rgba(255,255,255,0.15);
-        color: rgba(255,255,255,0.6);
-        width: 40px; height: 40px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: rgba(255, 255, 255, 0.6);
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
         font-size: 1rem;
         cursor: pointer;
@@ -815,14 +835,16 @@
         font-weight: 600;
         letter-spacing: 0.14em;
         text-transform: uppercase;
-        color: rgba(255,255,255,0.35);
+        color: rgba(255, 255, 255, 0.35);
       }
 
       .carousel-track .phone-frame-small {
         cursor: pointer;
       }
       .carousel-track .phone-frame-small:hover {
-        box-shadow: 0 0 0 1.5px var(--accent), 0 8px 24px rgba(0,0,0,0.3);
+        box-shadow:
+          0 0 0 1.5px var(--accent),
+          0 8px 24px rgba(0, 0, 0, 0.3);
       }
 
       .carousel-btn {
@@ -1180,7 +1202,7 @@
           justify-content: center;
           padding-right: 0;
           padding-bottom: 0;
-          order:2;
+          order: 2;
         }
 
         .project-phones-only {
@@ -1200,13 +1222,12 @@
           border-left: none;
           padding-left: 0;
           padding-right: 0;
-
         }
 
         .project-item:nth-child(odd) .project-visual {
-    padding-right: 0 !important;
-    padding-bottom: 0 !important;
-  }
+          padding-right: 0 !important;
+          padding-bottom: 0 !important;
+        }
         .skills-grid {
           grid-template-columns: repeat(2, 1fr);
         }
@@ -1217,13 +1238,13 @@
           border-right: none;
           border-bottom: 1px solid var(--border);
         }
-                 .project-desc,
-  .about-desc,
-  .contact-blurb,
-  .hero-sub {
-    text-align: justify;
-    max-width: 100%;
-  }
+        .project-desc,
+        .about-desc,
+        .contact-blurb,
+        .hero-sub {
+          text-align: justify;
+          max-width: 100%;
+        }
       }
 
       @media (max-width: 768px) {
@@ -1265,13 +1286,13 @@
           width: 180px;
           min-width: 180px;
         }
-         .project-desc,
-  .about-desc,
-  .contact-blurb,
-  .hero-sub {
-    text-align: justify;
-    max-width: 100%;
-  }
+        .project-desc,
+        .about-desc,
+        .contact-blurb,
+        .hero-sub {
+          text-align: justify;
+          max-width: 100%;
+        }
       }
     </style>
   </head>
@@ -1286,8 +1307,14 @@
           <li><a href="#projects">Projects</a></li>
           <li><a href="#skills">Skills</a></li>
           <li><a href="#contact">Contact</a></li>
-          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-            <span class="material-symbols-outlined" id="themeIcon">bedtime</span>
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Toggle theme"
+          >
+            <span class="material-symbols-outlined" id="themeIcon"
+              >bedtime</span
+            >
           </button>
         </ul>
         <button class="hamburger" id="hamburger" aria-label="Toggle menu">
@@ -1301,8 +1328,14 @@
         <a href="#contact" class="nav-mobile-link">Contact</a>
         <div class="nav-mobile-bottom">
           <span class="nav-mobile-theme-label">Theme</span>
-          <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle theme">
-            <span class="material-symbols-outlined" id="themeIconMobile">bedtime</span>
+          <button
+            class="theme-toggle"
+            id="themeToggleMobile"
+            aria-label="Toggle theme"
+          >
+            <span class="material-symbols-outlined" id="themeIconMobile"
+              >bedtime</span
+            >
           </button>
         </div>
       </div>
@@ -1441,7 +1474,7 @@
                 rel="noopener noreferrer"
                 class="project-link-btn"
               >
-                View Project </span>
+                View Project
               </a>
             </div>
           </div>
@@ -1580,7 +1613,7 @@
                 templates with fine-tuned controls: warmup sets, reps, weight,
                 %1RM, RPE, rest and notes. Personalize your home screen and
                 navigation to show exactly what you need. Track workout history
-                on a calendar, log quick sessions, and stay consistent with an 
+                on a calendar, log quick sessions, and stay consistent with an
                 activity tracker. No account required, all data is stored
                 locally on your device, with full backup export, restore, and
                 data reset options. Supports dark, dim, and light mode with
@@ -1670,13 +1703,18 @@
               Looking for frontend, full-stack, or software engineering roles.
             </p>
             <div class="contact-links">
-              <a href="mailto:bogdan01@outlook.pt" target="_blank" rel="noopener noreferrer" class="contact-link">
-  <div class="contact-link-left">
-    <span class="contact-link-label">Email</span>
-    bogdan01@outlook.pt
-  </div>
-  <span class="contact-link-arrow">↗</span>
-</a>
+              <a
+                href="mailto:bogdan01@outlook.pt"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="contact-link"
+              >
+                <div class="contact-link-left">
+                  <span class="contact-link-label">Email</span>
+                  bogdan01@outlook.pt
+                </div>
+                <span class="contact-link-arrow">↗</span>
+              </a>
               <a
                 href="https://github.com/BogdanEftimie"
                 target="_blank"
@@ -1773,19 +1811,29 @@
 
     <!-- lightbox -->
     <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
-      <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
-      <button class="lightbox-btn" id="lightboxPrev" aria-label="Previous">&#8592;</button>
+      <button class="lightbox-close" id="lightboxClose" aria-label="Close">
+        ✕
+      </button>
+      <button class="lightbox-btn" id="lightboxPrev" aria-label="Previous">
+        &#8592;
+      </button>
       <div class="lightbox-phone">
         <div class="phone-notch"></div>
         <div class="lightbox-screen">
           <img id="lightboxImg" src="" alt="" />
         </div>
       </div>
-      <button class="lightbox-btn" id="lightboxNext" aria-label="Next">&#8594;</button>
+      <button class="lightbox-btn" id="lightboxNext" aria-label="Next">
+        &#8594;
+      </button>
       <div class="lightbox-counter" id="lightboxCounter"></div>
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script
+    <script
+      data-cfasync="false"
+      src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
+    ></script>
+    <script
       data-cfasync="false"
       src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
     ></script>
@@ -1807,8 +1855,12 @@
 
       if (localStorage.getItem("theme") === "light") setTheme(true);
 
-      toggle.addEventListener("click", () => setTheme(!document.body.classList.contains("light")));
-      toggleMobile.addEventListener("click", () => setTheme(!document.body.classList.contains("light")));
+      toggle.addEventListener("click", () =>
+        setTheme(!document.body.classList.contains("light")),
+      );
+      toggleMobile.addEventListener("click", () =>
+        setTheme(!document.body.classList.contains("light")),
+      );
 
       hamburger.addEventListener("click", () => {
         hamburger.classList.toggle("open");
@@ -1816,7 +1868,7 @@
       });
 
       // close mobile menu when a link is clicked
-      document.querySelectorAll(".nav-mobile-link").forEach(link => {
+      document.querySelectorAll(".nav-mobile-link").forEach((link) => {
         link.addEventListener("click", () => {
           hamburger.classList.remove("open");
           navMobile.classList.remove("open");
@@ -1843,7 +1895,9 @@
       const lightbox = document.getElementById("lightbox");
       const lightboxImg = document.getElementById("lightboxImg");
       const lightboxCounter = document.getElementById("lightboxCounter");
-      const lbSlides = Array.from(document.querySelectorAll(".carousel-track .phone-frame-small"));
+      const lbSlides = Array.from(
+        document.querySelectorAll(".carousel-track .phone-frame-small"),
+      );
       let lightboxIndex = 0;
 
       function openLightbox(index) {
@@ -1851,7 +1905,7 @@
         const img = lbSlides[index].querySelector("img");
         lightboxImg.src = img.src;
         lightboxImg.alt = img.alt;
-        lightboxCounter.textContent = (index + 1) + " / " + lbSlides.length;
+        lightboxCounter.textContent = index + 1 + " / " + lbSlides.length;
         lightbox.classList.add("open");
         document.body.style.overflow = "hidden";
       }
@@ -1862,18 +1916,30 @@
       }
 
       function lightboxNav(dir) {
-        lightboxIndex = (lightboxIndex + dir + lbSlides.length) % lbSlides.length;
+        lightboxIndex =
+          (lightboxIndex + dir + lbSlides.length) % lbSlides.length;
         const img = lbSlides[lightboxIndex].querySelector("img");
         lightboxImg.src = img.src;
         lightboxImg.alt = img.alt;
-        lightboxCounter.textContent = (lightboxIndex + 1) + " / " + lbSlides.length;
+        lightboxCounter.textContent =
+          lightboxIndex + 1 + " / " + lbSlides.length;
       }
 
-      lbSlides.forEach((phone, i) => phone.addEventListener("click", () => openLightbox(i)));
-      document.getElementById("lightboxClose").addEventListener("click", closeLightbox);
-      document.getElementById("lightboxPrev").addEventListener("click", () => lightboxNav(-1));
-      document.getElementById("lightboxNext").addEventListener("click", () => lightboxNav(1));
-      lightbox.addEventListener("click", (e) => { if (e.target === lightbox) closeLightbox(); });
+      lbSlides.forEach((phone, i) =>
+        phone.addEventListener("click", () => openLightbox(i)),
+      );
+      document
+        .getElementById("lightboxClose")
+        .addEventListener("click", closeLightbox);
+      document
+        .getElementById("lightboxPrev")
+        .addEventListener("click", () => lightboxNav(-1));
+      document
+        .getElementById("lightboxNext")
+        .addEventListener("click", () => lightboxNav(1));
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
       document.addEventListener("keydown", (e) => {
         if (!lightbox.classList.contains("open")) return;
         if (e.key === "ArrowLeft") lightboxNav(-1);
