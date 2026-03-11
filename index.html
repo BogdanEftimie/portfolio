@@ -376,6 +376,7 @@
         font-size: 1rem;
         color: var(--muted2);
         line-height: 1.8;
+        text-align: justify;
       }
 
       @media (max-width: 768px) {
@@ -549,7 +550,7 @@
       .phone-overlap {
         position: absolute;
         bottom: -20px;
-        left: -20px;
+        left: 20px;
         width: 28%;
         z-index: 2;
       }
@@ -734,7 +735,7 @@
         pointer-events: all;
       }
       .lightbox-phone {
-        width: 260px;
+        width: 420px;
         aspect-ratio: 9/19;
         background: #141412;
         border-radius: 24px;
@@ -895,6 +896,7 @@
         font-weight: 400;
         margin-bottom: 28px;
         max-width: 420px;
+        text-align: justify;
       }
       .project-tags {
         display: flex;
@@ -1174,23 +1176,37 @@
           direction: ltr;
         }
         .project-visual {
+          display: flex;
+          justify-content: center;
           padding-right: 0;
+          padding-bottom: 0;
+          order:2;
         }
+
         .project-phones-only {
           padding-right: 0;
+          order: 2;
         }
-        .project-info {
-          padding-left: 0 !important;
-          padding-right: 0 !important;
+        .project-item .project-info {
+          padding-left: 5px !important;
+          padding-right: 5px !important;
           border-left: none !important;
           border-top: 1px solid var(--border);
           padding-top: 40px;
+          order: 1;
         }
         .project-item:nth-child(even) .project-visual,
         .project-item:nth-child(even) .project-phones-only {
           border-left: none;
           padding-left: 0;
+          padding-right: 0;
+
         }
+
+        .project-item:nth-child(odd) .project-visual {
+    padding-right: 0 !important;
+    padding-bottom: 0 !important;
+  }
         .skills-grid {
           grid-template-columns: repeat(2, 1fr);
         }
@@ -1201,6 +1217,13 @@
           border-right: none;
           border-bottom: 1px solid var(--border);
         }
+                 .project-desc,
+  .about-desc,
+  .contact-blurb,
+  .hero-sub {
+    text-align: justify;
+    max-width: 100%;
+  }
       }
 
       @media (max-width: 768px) {
@@ -1214,7 +1237,7 @@
           padding: 0 24px 60px;
         }
         .section-inner {
-          padding: 80px 24px;
+          padding: 80px 20px;
         }
         .hero-bottom {
           flex-direction: column;
@@ -1232,7 +1255,7 @@
         }
         .contact-left,
         .contact-right {
-          padding: 36px 24px;
+          padding: 36px 20px;
         }
         .carousel-track-wrap,
         .carousel-clip {
@@ -1242,6 +1265,13 @@
           width: 180px;
           min-width: 180px;
         }
+         .project-desc,
+  .about-desc,
+  .contact-blurb,
+  .hero-sub {
+    text-align: justify;
+    max-width: 100%;
+  }
       }
     </style>
   </head>
@@ -1586,39 +1616,41 @@
         </div>
         <div class="skills-grid reveal">
           <div class="skill-group">
+            <p class="skill-group-title">Languages</p>
+            <ul class="skill-list">
+              <li>JavaScript</li>
+              <li>TypeScript</li>
+              <li>Python</li>
+              <li>Java</li>
+            </ul>
+          </div>
+          <div class="skill-group">
             <p class="skill-group-title">Frontend</p>
             <ul class="skill-list">
-              <li>React / Next.js</li>
-              <li>JavaScript</li>
+              <li>React</li>
+              <li>Next.js</li>
               <li>HTML &amp; CSS</li>
               <li>Responsive Design</li>
             </ul>
           </div>
           <div class="skill-group">
-            <p class="skill-group-title">Backend</p>
+            <p class="skill-group-title">Backend & Data</p>
             <ul class="skill-list">
               <li>Node.js</li>
-              <li>Python</li>
-              <li>Java</li>
               <li>REST APIs</li>
+              <li>SQLite</li>
+              <li>SQL</li>
             </ul>
           </div>
           <div class="skill-group">
-            <p class="skill-group-title">Tools</p>
+            <p class="skill-group-title">Tools & Mobile</p>
             <ul class="skill-list">
+              <li>React Native</li>
+              <li>Expo</li>
               <li>Git / GitHub</li>
               <li>Docker</li>
               <li>Vercel</li>
               <li>VS Code</li>
-              <li>NPM</li>
-            </ul>
-          </div>
-          <div class="skill-group">
-            <p class="skill-group-title">Currently Learning</p>
-            <ul class="skill-list">
-              <li>TypeScript</li>
-              <li>React Native</li>
-              <li>Databases / SQL</li>
             </ul>
           </div>
         </div>
