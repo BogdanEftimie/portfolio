@@ -1228,6 +1228,12 @@
           padding-right: 0 !important;
           padding-bottom: 0 !important;
         }
+
+        @media (max-width: 1024px) {
+          .laptop:hover {
+            transform: none;
+          }
+        }
         .skills-grid {
           grid-template-columns: repeat(2, 1fr);
         }
@@ -1254,8 +1260,21 @@
         .nav-links {
           gap: 24px;
         }
+
         .hero-inner {
           padding: 0 24px 60px;
+          text-align: center;
+        }
+
+        .hero-eyebrow {
+          display: none;
+        }
+        .hero-cta {
+          width: 100%;
+          justify-content: center;
+        }
+        .hero-scroll {
+          display: none;
         }
         .section-inner {
           padding: 80px 20px;
