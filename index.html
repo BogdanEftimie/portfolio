@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bogdan Eftimie — Software Engineer</title>
 
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -205,6 +207,11 @@
       [data-theme="dark"] .theme-toggle:hover,
       [data-theme="dark"] .hamburger:hover {
         box-shadow: 6px 6px 0px #ffffff;
+      }
+
+      /* Hide mobile theme toggle on desktop */
+      #themeToggleMobile {
+        display: none;
       }
 
       .theme-icon {
@@ -1589,8 +1596,13 @@
         }
 
         .nav-links,
-        .theme-toggle.desktop-only {
+        .theme-toggle.desktop-only,
+        #themeToggle {
           display: none;
+        }
+
+        #themeToggleMobile {
+          display: inline-flex;
         }
 
         .hamburger {
@@ -1743,7 +1755,7 @@
 
           <button
             id="themeToggle"
-            class="theme-toggle desktop-only"
+            class="theme-toggle"
             aria-label="Toggle theme"
             title="Toggle theme"
             type="button"
@@ -1771,6 +1783,25 @@
         <a href="#projects">Projects</a>
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
+        <button
+          id="themeToggleMobile"
+          class="theme-toggle"
+          aria-label="Toggle theme"
+          title="Toggle theme"
+          type="button"
+          style="margin: 12px 24px; width: 40px; height: 40px; flex-shrink: 0;"
+        >
+          <svg class="theme-icon sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <path d="M12 1v2"></path><path d="M12 21v2"></path>
+            <path d="M4.22 4.22l1.42 1.42"></path><path d="M18.36 18.36l1.42 1.42"></path>
+            <path d="M1 12h2"></path><path d="M21 12h2"></path>
+            <path d="M4.22 19.78l1.42-1.42"></path><path d="M18.36 5.64l1.42-1.42"></path>
+          </svg>
+          <svg class="theme-icon moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3A7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
       </div>
     </nav>
 
@@ -2417,6 +2448,12 @@
       document.getElementById('themeToggle').addEventListener('click', () => {
         applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
       });
+      const mobileToggle = document.getElementById('themeToggleMobile');
+      if (mobileToggle) {
+        mobileToggle.addEventListener('click', () => {
+          applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+        });
+      }
     </script>
   </body>
 </html>
